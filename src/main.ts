@@ -1,6 +1,7 @@
 import "./style.css"
 
 import * as THREE from "three"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 const width = window.innerWidth
 const height = window.innerHeight
@@ -30,11 +31,12 @@ scene.add(torus)
 const lightColor = 0xffffff
 const ambientLight = new THREE.AmbientLight(lightColor)
 const pointLight = new THREE.PointLight(lightColor)
-
-
 pointLight.position.set(5, 5, 5)
-
 scene.add(ambientLight, pointLight)
+
+const lightHelper = new THREE.PointLightHelper(pointLight)
+const gridHelper = new THREE.GridHelper(200, 50)
+scene.add(lightHelper, gridHelper)
 
 function draw() {
   requestAnimationFrame(draw)
