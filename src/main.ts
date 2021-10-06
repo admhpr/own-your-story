@@ -28,8 +28,11 @@ const torus = new THREE.Mesh(geometry, material)
 
 scene.add(torus)
 
-function draw(){
-  requestAnimationFrame(draw);
+function draw() {
+  requestAnimationFrame(draw)
   renderer.render(scene, camera)
+  torus.rotation.x += 0.01
+  torus.rotation.y += 0.005
+  torus.rotation.z += 0.01
 }
 draw()
