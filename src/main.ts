@@ -40,11 +40,16 @@ scene.add(lightHelper, gridHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-function draw() {
-  requestAnimationFrame(draw)
-  renderer.render(scene, camera)
+function rotateTorus() {
   torus.rotation.x += 0.01
   torus.rotation.y += 0.005
   torus.rotation.z += 0.01
+}
+
+function draw() {
+  requestAnimationFrame(draw)
+  renderer.render(scene, camera)
+  rotateTorus()
+  controls.update()
 }
 draw()
