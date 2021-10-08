@@ -51,14 +51,20 @@ function addStar() {
   scene.add(star)
 }
 
-Array(200)
-  .fill(0)
-  .forEach(addStar)
+function createStarScape() {
+  Array(200)
+    .fill(0)
+    .forEach(addStar)
+}
 
 function rotateTorus() {
   torus.rotation.x += 0.01
   torus.rotation.y += 0.005
   torus.rotation.z += 0.01
+}
+
+function setup() {
+  createStarScape()
 }
 
 function draw() {
@@ -67,4 +73,6 @@ function draw() {
   rotateTorus()
   controls.update()
 }
+
+setup()
 draw()
