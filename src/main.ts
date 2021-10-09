@@ -2,6 +2,7 @@ import "./style.css"
 
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import { Mesh } from "three"
 
 const width = window.innerWidth
 const height = window.innerHeight
@@ -12,6 +13,9 @@ const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000)
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector(`#content`)!,
 })
+
+let moon: Mesh
+let avatar: Mesh
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(width, height)
@@ -67,6 +71,7 @@ function addMoon() {
 
   moon.position.z = 30
   moon.position.setX(-10)
+  return moon
 }
 
 function addAvatar() {
@@ -78,6 +83,7 @@ function addAvatar() {
   )
 
   scene.add(avatar)
+  return avatar
 }
 
 function createStarScape() {
@@ -88,12 +94,26 @@ function createStarScape() {
     .fill(0)
     .forEach(addStar)
 
-  addMoon()
+  moon = addMoon()
 }
 
-function moveCamera() {}
-function rotateAvatar() {}
-function rotateMoon() {}
+function moveCamera() {
+  const top = document.body.getBoundingClientRect().top
+  rotateMoon()
+  rotateAvatar()
+  camera.position.z = top * -0.01
+  camera.position.x = top * -0.0002
+  camera.rotation.y = top * -0.0002
+}
+function rotateAvatar() {
+  avatar.rotation.y += 0.01
+  avatar.rotation.z += 0.01
+}
+function rotateMoon() {
+  moon.rotation.x += 0.05
+  moon.rotation.y += 0.075
+  moon.rotation.z += 0.05
+}
 
 function rotateTorus() {
   torus.rotation.x += 0.01
@@ -103,7 +123,9 @@ function rotateTorus() {
 
 function setup() {
   createStarScape()
-  addAvatar()
+  avatar = addAvatar()
+  document.body.onscroll = moveCamera
+  moveCamera()
 }
 
 function draw() {
