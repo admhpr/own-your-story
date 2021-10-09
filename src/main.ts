@@ -50,13 +50,31 @@ function addStar() {
   star.position.set(x, y, z)
   scene.add(star)
 }
+function addMoon() {
+  const moonTexture = new THREE.TextureLoader().load("textures/moon.jpg")
+  const normalTexture = new THREE.TextureLoader().load("normals/moon.jpg")
+  const moon = new THREE.Mesh(
+    new THREE.SphereGeometry(3, 32, 32),
+    new THREE.MeshStandardMaterial({
+      map: moonTexture,
+      normalMap: normalTexture,
+    })
+  )
 
+  scene.add(moon)
+
+  moon.position.z = 30
+  moon.position.setX(-10)
+}
 function createStarScape() {
+  const spaceTexture = new THREE.TextureLoader().load("textures/space.jpg")
+  scene.background = spaceTexture
+
   Array(200)
     .fill(0)
     .forEach(addStar)
-  const spaceTexture = new THREE.TextureLoader().load("space.jpg")
-  scene.background = spaceTexture
+
+  addMoon()
 }
 
 function rotateTorus() {
