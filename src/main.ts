@@ -34,9 +34,11 @@ const pointLight = new THREE.PointLight(lightColor)
 pointLight.position.set(5, 5, 5)
 scene.add(ambientLight, pointLight)
 
-const lightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50)
-scene.add(lightHelper, gridHelper)
+if (import.meta.env.MODE === "development") {
+  const lightHelper = new THREE.PointLightHelper(pointLight)
+  const gridHelper = new THREE.GridHelper(200, 50)
+  scene.add(lightHelper, gridHelper)
+}
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
