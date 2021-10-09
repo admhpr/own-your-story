@@ -68,6 +68,18 @@ function addMoon() {
   moon.position.z = 30
   moon.position.setX(-10)
 }
+
+function addAvatar() {
+  const avatarTexture = new THREE.TextureLoader().load("textures/me.png")
+
+  const avatar = new THREE.Mesh(
+    new THREE.BoxGeometry(3, 3, 3),
+    new THREE.MeshBasicMaterial({ map: avatarTexture })
+  )
+
+  scene.add(avatar)
+}
+
 function createStarScape() {
   const spaceTexture = new THREE.TextureLoader().load("textures/space.jpg")
   scene.background = spaceTexture
@@ -79,6 +91,10 @@ function createStarScape() {
   addMoon()
 }
 
+function moveCamera() {}
+function rotateAvatar() {}
+function rotateMoon() {}
+
 function rotateTorus() {
   torus.rotation.x += 0.01
   torus.rotation.y += 0.005
@@ -87,6 +103,7 @@ function rotateTorus() {
 
 function setup() {
   createStarScape()
+  addAvatar()
 }
 
 function draw() {
