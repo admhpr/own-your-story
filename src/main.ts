@@ -55,6 +55,8 @@ function createStarScape() {
   Array(200)
     .fill(0)
     .forEach(addStar)
+  const spaceTexture = new THREE.TextureLoader().load("space.jpg")
+  scene.background = spaceTexture
 }
 
 function rotateTorus() {
