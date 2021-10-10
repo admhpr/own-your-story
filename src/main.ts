@@ -125,7 +125,6 @@ function setup() {
   createStarScape()
   avatar = addAvatar()
   document.body.onscroll = moveCamera
-  moveCamera()
 }
 
 function draw() {
@@ -135,5 +134,6 @@ function draw() {
   controls.update()
 }
 
+moveCamera()
 setup()
 draw()
