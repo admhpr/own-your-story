@@ -134,6 +134,6 @@ function draw() {
   controls.update()
 }
 
-moveCamera()
 setup()
 draw()
+moveCamera()
