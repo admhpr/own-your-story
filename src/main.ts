@@ -11,7 +11,7 @@ const aspect = width / height
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000)
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector(`#content`)!,
+  canvas: document.querySelector(`[data-canvas]`)!,
 })
 
 let moon: Mesh
